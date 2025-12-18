@@ -1,0 +1,334 @@
+/* ======================================================
+   GLOBAL THEME VARIABLES + ANIMATED THEME SYSTEM
+   ====================================================== */
+:root{
+  --bg:#0f1724;
+  --card:#0b1220;
+  --muted:#9aa4b2;
+  --accent:#7c5cff;
+  --accent-2:#00d4ff;
+  --text:#e6eef8;
+  --success:#3bd671;
+  --danger:#ff6b6b;
+  --radius:12px;
+  --gap:1rem;
+  --max-width:980px;
+
+  --border-color: rgba(255,255,255,0.08);
+
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.35);
+  --shadow-sm: 0 4px 12px rgba(0,0,0,0.25);
+
+  --transition-speed: 0.35s;
+}
+
+/* ======================================================
+   THEME ANIMATION
+   ====================================================== */
+*{
+  transition:
+    background-color var(--transition-speed) ease,
+    color var(--transition-speed) ease,
+    border-color var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease,
+    fill var(--transition-speed) ease;
+}
+
+/* ======================================================
+   LIGHT THEME
+   ====================================================== */
+:root[data-theme="light"]{
+  --bg:#f5f7fa;
+  --card:#ffffff;
+  --text:#111827;
+  --muted:#4b5563;
+
+  --accent:#6366f1;
+  --accent-2:#3b82f6;
+
+  --success:#16a34a;
+  --danger:#dc2626;
+
+  --border-color:rgba(0,0,0,0.12);
+
+  --shadow-lg:0 12px 28px rgba(0,0,0,0.09);
+  --shadow-sm:0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* ======================================================
+   RESET + BASE
+   ====================================================== */
+*{box-sizing:border-box}
+html,body{height:100%}
+
+body{
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial;
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.45;
+  padding-bottom:3rem;
+}
+
+.container{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:1rem;
+}
+
+/* Skip link */
+.skip-link{
+  position:absolute;
+  left:-999px;
+}
+.skip-link:focus{
+  left:1rem;
+  top:1rem;
+  background:var(--accent);
+  color:#fff;
+  padding:.5rem 1rem;
+  border-radius:6px;
+  z-index:9999;
+}
+
+/* ======================================================
+   HEADER
+   ====================================================== */
+.site-header{
+  background:rgba(255,255,255,0.03);
+  backdrop-filter:blur(6px);
+  position:sticky;
+  top:0;
+  z-index:20;
+  border-bottom:1px solid var(--border-color);
+}
+
+:root[data-theme="light"] .site-header{
+  background:rgba(255,255,255,0.65);
+}
+
+.header-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand .logo{
+  margin:0;
+  font-size:1.4rem;
+  color:var(--accent);
+}
+
+.brand .tag{
+  margin:.15rem 0 0;
+  font-size:.8rem;
+  color:var(--muted);
+}
+
+/* ======================================================
+   CARDS
+   ====================================================== */
+.card{
+  background:var(--card);
+  border:1px solid var(--border-color);
+  border-radius:var(--radius);
+  padding:1rem;
+  margin:1rem 0;
+  box-shadow:var(--shadow-lg);
+}
+
+.card-header{
+  margin-bottom:.75rem;
+}
+
+/* ======================================================
+   FORMS
+   ====================================================== */
+.form{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.75rem 1rem;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:.35rem;
+}
+
+.form label{
+  font-size:.85rem;
+  color:var(--muted);
+}
+
+.form input,
+.form select{
+  padding:.6rem .75rem;
+  border-radius:8px;
+  border:1px solid var(--border-color);
+  background:transparent;
+  color:var(--text);
+}
+
+.form input:focus,
+.form select:focus{
+  outline:none;
+  border-color:var(--accent);
+  box-shadow:0 6px 20px rgba(124,92,255,.15);
+}
+
+.form-actions{
+  grid-column:1 / -1;
+  display:flex;
+  gap:.5rem;
+}
+
+/* Buttons */
+.btn{
+  padding:.6rem .9rem;
+  border-radius:10px;
+  border:1px solid var(--border-color);
+  background:transparent;
+  color:var(--text);
+  cursor:pointer;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-sm);
+}
+
+.btn.primary{
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  border:none;
+  color:#fff;
+  font-weight:600;
+}
+
+.icon-btn{
+  font-size:1rem;
+  padding:.45rem;
+}
+
+/* ======================================================
+   TABLE
+   ====================================================== */
+.table-wrap{overflow:auto}
+
+.students-table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.students-table th,
+.students-table td{
+  padding:.65rem .75rem;
+  text-align:center;
+  border-bottom:1px solid var(--border-color);
+}
+
+.students-table thead th{
+  font-size:.9rem;
+  color:var(--muted);
+}
+
+/* ======================================================
+   MODAL
+   ====================================================== */
+.modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  place-items:center;
+  z-index:9999;
+}
+
+.modal[aria-hidden="false"]{display:grid}
+
+.modal-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(4px);
+}
+
+.modal-content{
+  position:relative;
+  background:var(--card);
+  border:1px solid var(--border-color);
+  padding:1.6rem 2rem;
+  border-radius:14px;
+  max-width:420px;
+  width:90%;
+  box-shadow:var(--shadow-lg);
+}
+
+.modal-close{
+  position:absolute;
+  top:8px;
+  right:10px;
+  background:none;
+  border:none;
+  font-size:1.5rem;
+  cursor:pointer;
+  color:var(--muted);
+}
+
+.modal-close:hover{color:var(--text)}
+
+.modal-body{text-align:center}
+
+.modal-message{
+  font-size:1.15rem;
+  font-weight:600;
+  color:var(--danger);
+}
+
+/* ======================================================
+   FOOTER
+   ====================================================== */
+.site-footer{
+  margin-top:2rem;
+  padding:.8rem 0;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  border-radius:18px 18px 0 0;
+  box-shadow:0 -4px 14px rgba(0,0,0,0.15);
+}
+
+.footer-inner{
+  max-width:var(--max-width);
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:#fff;
+  font-weight:600;
+}
+
+/* ======================================================
+   SKELETON
+   ====================================================== */
+.skeleton{
+  height:8px;
+  background:linear-gradient(90deg,
+    rgba(255,255,255,0.02) 25%,
+    rgba(255,255,255,0.06) 50%,
+    rgba(255,255,255,0.02) 75%);
+  background-size:200% 100%;
+  animation:shimmer 1.6s linear infinite;
+  border-radius:6px;
+  margin-top:.5rem;
+}
+
+@keyframes shimmer{
+  from{background-position:200% 0}
+  to{background-position:-200% 0}
+}
+
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
+@media (max-width:720px){
+  .form{grid-template-columns:1fr}
+  .footer-inner{flex-direction:column;gap:.5rem}
+}
